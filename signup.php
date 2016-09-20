@@ -1,4 +1,4 @@
-<?php // signup page
+<?php //signup page
   require_once 'functions.php';
 
 
@@ -29,6 +29,7 @@
 
 <head>
 <link rel="stylesheet" href="style.css">
+<link rel='stylesheet' href='style2.css'>
 </head>
 <body>
 

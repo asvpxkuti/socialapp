@@ -1,7 +1,9 @@
-<?php // login page
+<?php //login page
   require_once 'header.php';
 
   $error = $user = $pass = "";
+  
+  echo "<style>#fg2{margin-left:25%;color:red}#log{color:white}#log1{color:red}</style></head>";
 
   if (isset($_POST['user']))
   {
@@ -23,37 +25,33 @@
       {
         $_SESSION['user'] = $user;
         $_SESSION['pass'] = $pass;
-        die("You are now logged in. Please <a href='members.php?view=$user'>" .
-            "click here</a> to continue.<br><br>");
+        die("<h2 id='log'>You are now logged in. Please <a id='log1' href='members.php?view=$user'>" .
+            "click here</a> to continue</h2>.<br><br>");
       }
     }
   }
 
   echo <<<_END
-<!DOCTYPE html>
-<html>
-
-<head>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
 
 <div id = "login">
 <form method="post" action="login.php">$error
-   user:<br>
+   Enter username:<br>
   <input id="lg1" type="text" name="user" value="$user">
   <br>
   Enter password:<br>
-  <input id="lg2" type="text" name="pass" value="$pass">
+  <input id="lg2" type="password" name="pass" value="$pass">
   <br><br>
   <input id="lg3" type="submit" value="login">
 </form>
+<h3 id='fg2'><a href='changepass.php'>Click here</a> if you forgot your password</h3>
 </div>
 
 
+
+_END;
+
+
+?>
 </body>
 </html>
-_END;
-?>
-
     

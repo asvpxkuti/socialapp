@@ -1,8 +1,10 @@
-<?php // header page
+<?php // header.php
   session_start();
 
-  require_once 'functions.php';
+  
   echo "<!DOCTYPE html>\n<html><head>";
+  
+  require_once 'functions.php';
 
   $userstr = ' (Guest)';
 
@@ -15,6 +17,7 @@
   else $loggedin = FALSE;
   
   echo "<link rel='stylesheet' href='style.css'>";
+  echo "<link rel='stylesheet' href='style2.css'>";
 
   //echo "<h2>Welcome</h2>";
 

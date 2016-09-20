@@ -2,6 +2,8 @@
   require_once 'header.php';
 
   if (!$loggedin) die();
+  
+  echo "<link rel='stylesheet' href='style3.css'>";
 
   echo "<div class='main'>";
 

@@ -1,5 +1,7 @@
-<?php // messages page
+<?php //messages page
   require_once 'header.php';
+  
+  //echo "<link rel='stylesheet' href='style.css'>";
 
   if (!$loggedin) 
     die();
@@ -32,7 +34,7 @@
       $name2 = "$view's";
     }
 
-    echo "<div class='main'><h3>$name1 Messages</h3>";
+    echo "<div class='profile'><h3>$name1 Messages</h3>";
     showProfile($view);
     
     echo <<<_END

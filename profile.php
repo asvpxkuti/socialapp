@@ -2,13 +2,13 @@
   require_once 'header.php';
   //require_once 'home.php';
   
-  echo "<style>body{background-color:grey}</style></head>";
+  //echo "<style>body{background-color:grey}</style></head>";
 
   if (!$loggedin) die();
   
 
   
-  echo "<div class='main'><h3>Your Profile</h3>";
+  echo "<div class='profile'><h3>Your Profile</h3>";
 
   $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
     
@@ -84,6 +84,7 @@
   showProfile($user);
 
   echo <<<_END
+    <div id ="msg">
     <form method='post' action='profile.php' enctype='multipart/form-data'>
     <h3>Enter or edit your details and/or upload an image</h3>
     <textarea name='text' cols='50' rows='3'>$text</textarea><br>

@@ -1,0 +1,17 @@
+body{
+    background-image: url("friends.jpg");
+    background-repeat: no-repeat;
+   	background-position: center top; 
+    
+}
+
+.profile{
+    margin-left:15%;
+    background-color:white;
+    width:50%;
+    float:center;
+}
+
+#msg{
+    margin-left:12%;
+}

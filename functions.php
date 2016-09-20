@@ -17,7 +17,7 @@
   function changePass($query)
   {
     queryMysql($query);
-    echo "Congratulations your new is ready to go enjoy.<br>";
+    echo "<h1><a href='login.php'>Click here </a>to log back in</h1>";
   }
 
   function queryMysql($query)
