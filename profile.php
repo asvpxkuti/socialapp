@@ -1,4 +1,4 @@
-<?php // Example 26-8: profile.php
+<?php // profile page
   require_once 'header.php';
   //require_once 'home.php';
   

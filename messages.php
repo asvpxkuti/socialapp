@@ -1,4 +1,4 @@
-<?php // Example 26-11: messages.php
+<?php // messages page
   require_once 'header.php';
 
   if (!$loggedin) 

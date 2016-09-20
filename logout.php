@@ -1,4 +1,4 @@
-<?php // Example 26-12: logout.php
+<?php // logout page
   require_once 'header.php';
 
   if (isset($_SESSION['user']))

@@ -1,4 +1,4 @@
-<?php // Example 26-4: index.php
+<?php // index page
   
   //require_once 'home.php';
   require_once 'header.php';

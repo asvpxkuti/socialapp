@@ -1,4 +1,4 @@
-<?php // header.php
+<?php // header page
   session_start();
 
   require_once 'functions.php';

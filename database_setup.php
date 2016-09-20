@@ -1,4 +1,4 @@
-<?php
+<?php // setting up tables
 
 
 echo <<<_END

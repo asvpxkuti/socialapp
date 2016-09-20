@@ -1,4 +1,4 @@
-<?php // Example 26-10: friends.php
+<?php // friends page
   require_once 'header.php';
 
   if (!$loggedin) die();

@@ -1,4 +1,4 @@
-<?php // Example 26-5: signup.php
+<?php // signup page
   require_once 'functions.php';
 
 
