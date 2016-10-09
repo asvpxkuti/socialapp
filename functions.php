@@ -6,7 +6,8 @@
   
 
   $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
-  if ($connection->connect_error) die($connection->connect_error);
+  if ($connection->connect_error) 
+    die($connection->connect_error);
 
   function createTable($name, $query)
   {

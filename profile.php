@@ -1,10 +1,14 @@
 <?php // profile page
   require_once 'header.php';
   //require_once 'home.php';
+    echo "<script src='javascript.js'></script>";
+    echo '<link rel="stylesheet" href="style.css">';
+    echo "<link rel='stylesheet' href='style2.css'>";
   
   //echo "<style>body{background-color:grey}</style></head>";
 
-  if (!$loggedin) die();
+  if (!$loggedin) 
+        die();
   
 
   
@@ -19,7 +23,8 @@
 
     if ($result->num_rows)
          queryMysql("UPDATE profiles SET text='$text' where user='$user'");
-    else queryMysql("INSERT INTO profiles VALUES('$user', '$text')");
+    else 
+        queryMysql("INSERT INTO profiles VALUES('$user', '$text')");
   }
   else
   {

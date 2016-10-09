@@ -25,7 +25,7 @@ echo <<<_END
       <li><a href="members.php">Members</a></li>
       <li><a href="profile.php">Edit Profile</a></li>
       <li><a href="logout.php">Logout</a></li>
-      <li><a href="#">Gallery</a></li>
+      <li><a href="event.php">Create An Event</a></li>
     </ul>
   </div>
 </nav>

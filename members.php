@@ -1,7 +1,12 @@
 <?php // members page
   require_once 'header.php';
+  
+    echo "<script src='javascript.js'></script>";
+    echo '<link rel="stylesheet" href="style.css">';
+    echo "<link rel='stylesheet' href='style2.css'>";
 
-  if (!$loggedin) die();
+  if (!$loggedin) 
+        die();
   
   echo "<link rel='stylesheet' href='style3.css'>";
 

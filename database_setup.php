@@ -34,11 +34,22 @@ createTable('profiles',
               text VARCHAR(4096),
               INDEX(user(6))');
               
- createTable('friends',
+createTable('friends',
               'user VARCHAR(16),
               friend VARCHAR(16),
               INDEX(user(6)),
               INDEX(friend(6))');
+              
+createTable('events',
+                    'id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                    email VARCHAR(255)  NOT NULL,
+                    lastname    VARCHAR(255),
+                    firstname   VARCHAR(255),
+                    street  VARCHAR(255),
+                    city    VARCHAR(255),
+                    province CHAR(2),
+                    postal_code CHAR(6),
+                    phone VARCHAR(25)');
 
              
               

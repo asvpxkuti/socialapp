@@ -1,7 +1,9 @@
 <?php //messages page
   require_once 'header.php';
   
-  //echo "<link rel='stylesheet' href='style.css'>";
+  
+    echo '<link rel="stylesheet" href="style.css">';
+    echo "<link rel='stylesheet' href='style2.css'>";
 
   if (!$loggedin) 
     die();
@@ -42,8 +44,8 @@
       <form method='post' action='messages.php?view=$view'>
       Type here to leave a message:<br>
       <textarea name='text' cols='40' rows='3'></textarea><br>
-      Public<input type='radio' name='pm' value='0' checked='checked'>
-      Private<input type='radio' name='pm' value='1'>
+      Public<input type='radio' name='pm' value='0' checked='checked'><br>
+      Private<input type='radio' name='pm' value='1'><br>
       <input type='submit' value='Post Message'></form><br>
       </div>
 _END;
@@ -83,7 +85,7 @@ _END;
   }
 
   if (!$num) 
-    echo "<br><p> Theres no messages yet</p><br><br>";
+    echo "<br><p> Theres no messages yet</p><br>";
 
   echo "<br><a class='button' href='messages.php?view=$view'>Refresh messages</a>";
 ?>

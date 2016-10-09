@@ -14,11 +14,13 @@
     $loggedin = TRUE;
     $userstr  = " ($user)";
   }
-  else $loggedin = FALSE;
+  else 
+    $loggedin = FALSE;
   
-  echo "<link rel='stylesheet' href='style.css'>";
-  echo "<link rel='stylesheet' href='style2.css'>";
-
+  //echo "<link rel='stylesheet' href='style.css'>";
+  echo '<link rel="stylesheet" href="form.css">';
+  //echo "<link rel='stylesheet' href='style2.css'>";
+  //echo "<script src='javascript.js'></script>";
   //echo "<h2>Welcome</h2>";
 
   if ($loggedin)

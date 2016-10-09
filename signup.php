@@ -3,6 +3,9 @@
     require_once 'header.php';
     
     echo "<script src='javascript.js'></script>";
+    echo '<link rel="stylesheet" href="style.css">';
+    echo "<link rel='stylesheet' href='style2.css'>";
+    
     
   echo <<<_END
   <script>
@@ -85,9 +88,7 @@ _END;
   }
 
   echo <<<_END
-<link rel="stylesheet" href="style.css">
-<link rel='stylesheet' href='style2.css'>
-</head>
+
 <body>
 
 <div id ="signin">

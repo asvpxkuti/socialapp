@@ -1,5 +1,8 @@
 <?php // logout page
   require_once 'header.php';
+    echo "<script src='javascript.js'></script>";
+    echo '<link rel="stylesheet" href="style.css">';
+    echo "<link rel='stylesheet' href='style2.css'>";
 
   if (isset($_SESSION['user']))
   {

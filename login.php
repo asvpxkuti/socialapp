@@ -1,6 +1,9 @@
 <?php //login page
   require_once 'header.php';
 
+    echo "<script src='javascript.js'></script>";
+    echo '<link rel="stylesheet" href="style.css">';
+    echo "<link rel='stylesheet' href='style2.css'>";
   $error = $user = $pass = "";
   
   echo "<style>#fg2{margin-left:25%;color:red}#log{color:white}#log1{color:red}</style></head>";
