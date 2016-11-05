@@ -1,8 +1,8 @@
 <?php // Making a simple website
   $dbhost  = 'localhost';    // Unlikely to require changing
-  $dbname  = 'kejetia';   // Modify these...
-  $dbuser  = 'web';   // ...variables according
-  $dbpass  = 'pass';   // ...to your installation
+  $dbname  = 'webdevelopment';   // Modify these...
+  $dbuser  = 'webmaster';   // ...variables according
+  $dbpass  = 'ozil';   // ...to your installation
   
 
   $connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
@@ -25,7 +25,8 @@
   {
     global $connection;
     $result = $connection->query($query);
-    if (!$result) die($connection->error);
+    if (!$result) 
+      die($connection->error);
     return $result;
   }
 
@@ -48,17 +49,14 @@
     return $connection->real_escape_string($var);
   }
 
-  function showProfile($user)
+   function showProfile($user)
   {
-    if (file_exists("$user.jpg"))
-      echo "<img src='$user.jpg' style='float:left;'>";
+    // $myimage = "uploads/$user.jpg";
+      if (file_exists("$user.jpg")){
+         echo "<img src='$user.jpg' class='img-responsive img-thumbnail' alt='profile pic' width='200' height='200' >";
+        }
 
-    $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
-
-    if ($result->num_rows)
-    {
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      echo stripslashes($row['text']) . "<br style='clear:left;'><br>";
-    }
   }
+  
+
 ?>

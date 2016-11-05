@@ -1,20 +1,19 @@
-<?php // index or better yet home page
-  
-  //require_once 'home.php';
-  require_once 'header.php';
-  
-    echo "<script src='javascript.js'></script>";
-    echo '<link rel="stylesheet" href="style.css">';
-    echo "<link rel='stylesheet' href='style2.css'>";
 
-  echo "<br><span class='main'>Welcome to LinkUP,";
+ <?php require_once 'header.php';?>
+ <?php include("headder.php"); ?>
 
+ <?php
+  echo "<div id='main' class='container'>";
+ 
+  echo "<h2>Welcome to LinkUP, </h2>";
   if ($loggedin) 
-        echo " $user, you are logged in.";
+        echo "<span id='login'>$user, you are logged in.</span>";
   else           
-        echo ' please sign up and/or log in to join in.';
-?>
+        echo "<span id='login'>please sign up and/or log in to join in.</span>";
 
-    </span><br><br>
-  </body>
-</html>
+  
+    
+  echo "</div>";
+  ?>
+
+<?php  include("footer.php"); ?>

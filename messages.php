@@ -1,9 +1,6 @@
 <?php //messages page
   require_once 'header.php';
-  
-  
-    echo '<link rel="stylesheet" href="style.css">';
-    echo "<link rel='stylesheet' href='style2.css'>";
+
 
   if (!$loggedin) 
     die();
@@ -17,7 +14,7 @@
   {
     $text = sanitizeString($_POST['text']);
 
-    if ($text != "")
+    if ($text != " ")
     {
       $pm   = substr(sanitizeString($_POST['pm']),0,1);
       $time = time();
@@ -35,19 +32,27 @@
       $name1 = "<a href='members.php?view=$view'>$view</a>'s";
       $name2 = "$view's";
     }
-
-    echo "<div class='profile'><h3>$name1 Messages</h3>";
-    showProfile($view);
+include("headder.php"); 
+    echo "<div class='container profile'>"; //beginning of the body
+    echo "<h1>$name1 Messages</h1>";
+    // showProfile($view);
     
     echo <<<_END
-      <div id ="msg">
       <form method='post' action='messages.php?view=$view'>
-      Type here to leave a message:<br>
-      <textarea name='text' cols='40' rows='3'></textarea><br>
-      Public<input type='radio' name='pm' value='0' checked='checked'><br>
-      Private<input type='radio' name='pm' value='1'><br>
-      <input type='submit' value='Post Message'></form><br>
-      </div>
+        <em>Type here to leave a message:</em><br>
+        <textarea class='form-group' name='text' cols='40' rows='3'></textarea><br>
+        
+       
+        <label class='radio-inline'>
+          <input type='radio' name='pm' value='0' checked='checked'>Public
+        </label>
+       
+        <label class='radio-inline'>
+          <input type='radio' name='pm' value='1'>Private
+        </label>
+        <br>
+        <button type='submit' class='btn btn-success'>Post Message</button>
+      </form>
 _END;
 
     if (isset($_GET['erase']))
@@ -70,26 +75,25 @@ _END;
         echo " <a href='messages.php?view=" . $row['auth'] . "'>" . $row['auth']. "</a> ";
 
         if ($row['pm'] == 0)
-          echo "wrote: &quot;" . $row['message'] . "&quot; ";
+          echo "wrote: &quot;" . $row['message'] . "&quot; " . "<br>";
         else
           echo "whispered: <span class='whisper'>&quot;" .
-            $row['message']. "&quot;</span> ";
+            $row['message']. "&quot;</span>" . "<br>";
 
         if ($row['recip'] == $user)
           echo "[<a href='messages.php?view=$view" .
-               "&erase=" . $row['id'] . "'>erase</a>]";
+               "&erase=" . $row['id'] . "'>erase</a>]" . "<br>";
 
-        echo "<br>";
+       
       }
     }
   }
 
   if (!$num) 
-    echo "<br><p> Theres no messages yet</p><br>";
+    echo "<p > Theres no messages yet</p><br>";
 
-  echo "<br><a class='button' href='messages.php?view=$view'>Refresh messages</a>";
+    echo "<br><a href='messages.php?view=$view'>Refresh messages</a>";
+
+  echo "</div>"; //end of body container
+include("footer.php"); 
 ?>
-
-    </div><br>
-  </body>
-</html>

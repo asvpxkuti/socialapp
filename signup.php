@@ -1,14 +1,23 @@
 <?php //signup page
-  //require_once 'functions.php';
     require_once 'header.php';
     
-    echo "<script src='javascript.js'></script>";
-    echo '<link rel="stylesheet" href="style.css">';
-    echo "<link rel='stylesheet' href='style2.css'>";
-    
-    
-  echo <<<_END
-  <script>
+ ?> 
+
+
+
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src='javascript.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script>
     function checkUser(userg)
     {
       if (userg.value == '')
@@ -59,18 +68,24 @@
       return request
     }
   </script>
-  
-_END;
+</head>
+<body>
 
-  $error = $user = $pass = "";
+<div class="container" id="sign-up">
+
+  <?php
+
+  $error="";
   if (isset($_SESSION['user'])){
     destroySession();
   } 
 
+
+
   if (isset($_POST['user']))
   {
     $user = sanitizeString($_POST['user']);
-    $pass = sanitizeString($_POST['pass']);
+    $pass = sha1($_POST['pass']);
     
     if ($user == "" || $pass == ""){
         $error = "Not all fields were entered<br><br>";
@@ -82,35 +97,27 @@ _END;
         
      else{
         queryMysql("INSERT INTO members VALUES('$user', '$pass')");
-        die("<h4>Account created <a href='login.php'>Please Log in.</a></h4><br><br>");
+        die("<h4 id ='signh4'>Account created <a id='signup' href='login.php'>Please Log in.</a></h4><br><br>");
       }
     }
   }
 
-  echo <<<_END
-
-<body>
-
-<div id ="signin">
-<form method="post" action="signup.php">$error
-  create username:<br>
-  <input id="sub1" type="text" name="user" value="$user" onBlur="checkUser(this)">
-  <br>
-  <span id="info"></span><br>
-  create password:<br>
-  <input id="sub1" type="text" name="pass" value="$pass">
-  <br><br>
-  <input id="sub2" type="submit" value="Sign Up">
-</form>
 
 
-    
-_END;
-?>
 
-        </div>
-    </body>
-</html>
-    
+  ?>
+  <h2>Create Account</h2>
+  <form method="post" action="signup.php">
+    <h3><?php echo $error; ?></h3>
+    <div class="form-group">
+      <input type="text" name="user" onBlur="checkUser(this)" class="form-control" id="user" placeholder="Enter Username">
+    </div>
+    <div class="form-group">
+      <input type="password" name="pass"  class="form-control" id="pwd" placeholder="Create Password">
+    </div> 
+    <button type="submit" class="btn btn-default">Sign Up</button>
+  </form>
+</div>
 
-    
+</body>
+</html> 

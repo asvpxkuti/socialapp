@@ -1,0 +1,59 @@
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
+.errorSpan{
+	background-color: #00ffff;
+	padding: 0px;
+}
+
+.errorfeedback{
+	visibility: hidden;
+}
+
+#errorDiv{
+	color:red;
+}
+
+body{
+
+	 background-image: url("friends.jpg");
+	 background-position: center top; 
+	 color: white;
+}
+
+#main{
+	color: white;
+}
+.container-fluid{
+	color: white;
+}
+
+#login{
+	margin-left: 300px;
+}
+
+#signin{
+	margin-left: 80px;
+}
+
+.msg,{
+	color:#00ffff;
+}
+
+.profile{
+	color:#585858 ;
+	background-color:#F8F8F8 ;  
+}
+
+#member{
+	color:#FF0000 ;
+}
+
+#form{
+	color:black;
+}
+
+#sign-up{
+	color: white;
+}

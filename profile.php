@@ -1,103 +1,100 @@
-<?php // profile page
-  require_once 'header.php';
-  //require_once 'home.php';
-    echo "<script src='javascript.js'></script>";
-    echo '<link rel="stylesheet" href="style.css">';
-    echo "<link rel='stylesheet' href='style2.css'>";
   
-  //echo "<style>body{background-color:grey}</style></head>";
+<?php require_once('header.php');?>
+<?php include("headder.php"); ?> <!-- header for html template -->
 
-  if (!$loggedin) 
-        die();
+
+  <div class="container">
+    <div class="jumbotron">
+
+      <h1>Your Profile</h1>
+
+      <div class="row">
+
+        <div class="col-md-4"><!-- photo for thumbnail -->
+
+        <?php 
+
+          if(!$loggedin) {
+             die();
+          }
+          
+          $test = " ";
+          $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
+            
+          if (isset($_POST['text']))
+          {
+            $text = sanitizeString($_POST['text']);
+            $text = preg_replace('/\s\s+/', ' ', $text);
+
+            if ($result->num_rows)
+                 queryMysql("UPDATE profiles SET text='$text' where user='$user'");
+            else 
+              queryMysql("INSERT INTO profiles VALUES('$user', '$text')");
+          }
+          else
+          {
+            if ($result->num_rows)
+            {
+              $row  = $result->fetch_array(MYSQLI_ASSOC);
+              $text = stripslashes($row['text']);
+            }
+            else $text = "";
+          }
+
+          $text = stripslashes(preg_replace('/\s\s+/', ' ', $text));
+
+          if (isset($_FILES['image']['name']))
+          {
+            $saveto = "$user.jpg";
+            $image = $_FILES['image']['name'];
+            $text = $_POST['text'];
+            $sql = queryMysql("INSERT INTO images(image,text) VALUES('$image','$text')");
+
+            move_uploaded_file($_FILES['image']['tmp_name'], $saveto); 
+          }
+
+          showProfile($user);
+            ?>
+
+        </div>
+
+        <div class="col-md-8">
+          <h2>About Me</h2>
+          <p>
+            <?php
+                $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
+
+                if ($result->num_rows)
+                {
+                  $row = $result->fetch_array(MYSQLI_ASSOC);
+                  $about_me_test = stripslashes($row['text']);
+                  echo "<em class='text-center'>$about_me_test</em>";
+                }
+
+            ?>
+
+          </p>  
+
+        </div>
+
+
+      </div>
+
+          
   
+      <form method='post' action='profile.php' enctype='multipart/form-data'>
+          <h3>Enter or edit your details and/or upload an image</h3>
+          <textarea class="form-control" name='text' cols='50' rows='3' placeholder='Write something about your self'></textarea>
+          <h3>Image: </h3>
+          <div class="form-group">
+          <input  type='hidden' class="form-control" name='size' value='1000000'>
+          </div>
+          <div class="form-group">
+          <input  type='file' class="form-control" name='image' size='14'>
+          </div>
+          <button type="submit" class="btn btn-default">Save Profile</button>
+      </form>
+      </div>
+  </div><!--  end of container -->
 
-  
-  echo "<div class='profile'><h3>Your Profile</h3>";
-
-  $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
-    
-  if (isset($_POST['text']))
-  {
-    $text = sanitizeString($_POST['text']);
-    $text = preg_replace('/\s\s+/', ' ', $text);
-
-    if ($result->num_rows)
-         queryMysql("UPDATE profiles SET text='$text' where user='$user'");
-    else 
-        queryMysql("INSERT INTO profiles VALUES('$user', '$text')");
-  }
-  else
-  {
-    if ($result->num_rows)
-    {
-      $row  = $result->fetch_array(MYSQLI_ASSOC);
-      $text = stripslashes($row['text']);
-    }
-    else $text = "";
-  }
-
-  $text = stripslashes(preg_replace('/\s\s+/', ' ', $text));
-
-  if (isset($_FILES['image']['name']))
-  {
-    $saveto = "$user.jpg";
-    move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
-    $typeok = TRUE;
-
-    switch($_FILES['image']['type'])
-    {
-      case "image/gif":   $src = imagecreatefromgif($saveto); break;
-      case "image/jpeg":  // Both regular and progressive jpegs
-      case "image/pjpeg": $src = imagecreatefromjpeg($saveto); break;
-      case "image/png":   $src = imagecreatefrompng($saveto); break;
-      default:            $typeok = FALSE; break;
-    }
-
-    if ($typeok)
-    {
-      list($w, $h) = getimagesize($saveto);
-
-      $max = 100;
-      $tw  = $w;
-      $th  = $h;
-
-      if ($w > $h && $max < $w)
-      {
-        $th = $max / $w * $h;
-        $tw = $max;
-      }
-      elseif ($h > $w && $max < $h)
-      {
-        $tw = $max / $h * $w;
-        $th = $max;
-      }
-      elseif ($max < $w)
-      {
-        $tw = $th = $max;
-      }
-
-      $tmp = imagecreatetruecolor($tw, $th);
-      imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
-      imageconvolution($tmp, array(array(-1, -1, -1),
-        array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
-      imagejpeg($tmp, $saveto);
-      imagedestroy($tmp);
-      imagedestroy($src);
-    }
-  }
-
-  showProfile($user);
-
-  echo <<<_END
-    <div id ="msg">
-    <form method='post' action='profile.php' enctype='multipart/form-data'>
-    <h3>Enter or edit your details and/or upload an image</h3>
-    <textarea name='text' cols='50' rows='3'>$text</textarea><br>
-_END;
-?>
-
-    Image: <input type='file' name='image' size='14'>
-    <input type='submit' value='Save Profile'>
-    </form></div></div><br>
-  </body>
-</html>
+<?php  include("footer.php"); ?>
